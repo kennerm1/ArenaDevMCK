@@ -1079,7 +1079,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  bullet: {fileID: 5624531428185369701, guid: 84fcfff3cfd6d014aa4cdf7ecdb1ed6b, type: 3}
+  bullet: {fileID: 3023481538947815445, guid: 1f3250f1ce027d04d8e0e35000479704, type: 3}
   bulletSpeed: 100
 --- !u!4 &1356007172 stripped
 Transform:
@@ -1693,6 +1693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0cb304f8e7b0d4fab064440f10f078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  labelText: Collect all 4 items and win your freedom!
+  maxItems: 1
 --- !u!4 &1990919805
 Transform:
   m_ObjectHideFlags: 0
