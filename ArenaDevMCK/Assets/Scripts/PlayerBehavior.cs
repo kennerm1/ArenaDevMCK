@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     public LayerMask groundLayer;
     public GameObject bullet;
     public float bulletSpeed = 100f;
+    public bool isGrounded = true;
 
     private float vInput;
     private float hInput;
@@ -26,13 +27,29 @@ public class PlayerBehavior : MonoBehaviour
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameBehavior>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        {
+            _rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Enemy")
+        {
+            _gameManager.HP -= 1;
+        }
+        if (collision.gameObject.name == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
     void FixedUpdate()
     {
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.Space))
-        {
-            _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
-        }
-
         vInput = Input.GetAxis("Vertical") * moveSpeed;
         hInput = Input.GetAxis("Horizontal") * rotateSpeed;
        
@@ -60,6 +77,7 @@ public class PlayerBehavior : MonoBehaviour
         return grounded;
     }
 
+    /*
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Enemy")
@@ -67,4 +85,5 @@ public class PlayerBehavior : MonoBehaviour
             _gameManager.HP -= 1;
         }
     }
+    */
 }
