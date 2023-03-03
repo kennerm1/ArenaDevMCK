@@ -13,6 +13,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject bullet;
     public float bulletSpeed = 100f;
     public bool isGrounded = true;
+    public delegate void JumpingEvent();
+    public event JumpingEvent playerJump;
 
     private float vInput;
     private float hInput;
@@ -33,6 +35,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             _rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
             isGrounded = false;
+            playerJump();
         }
     }
 
